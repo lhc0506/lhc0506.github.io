@@ -11,7 +11,8 @@ const $stateEmblem = document.querySelector(".state-emblem");
 $cardContainer.addEventListener("click", handleCardClick);
 $startButton.addEventListener("click", handleStartClick);
 $restartButton.addEventListener("click", handleRestartClick);
-
+$startButton.addEventListener("mouseenter",function() {sound.playStart();});
+$startButton.addEventListener("mouseleave",function() {sound.stopStart();});
 const defaultImage = "./img/hyundai.jpg"
 const totalEmblem = 8;
 let emblemOpened;
@@ -21,9 +22,10 @@ const cardsOpened = [];
 let timeLeft;
 let timer;
 
-setTimeout(()=>{
-  sound.playStart();
-},100);
+
+// setTimeout(()=>{
+  
+// },200);
 
 function handleStartClick() {
   sound.stopStart();
