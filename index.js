@@ -12,7 +12,8 @@ $cardContainer.addEventListener("click", handleCardClick);
 $startButton.addEventListener("click", handleStartClick);
 $restartButton.addEventListener("click", handleRestartClick);
 $startButton.addEventListener("mouseenter",function() {sound.playStart();});
-$startButton.addEventListener("mouseleave",function() {sound.stopStart();});
+$startButton.addEventListener("mouseleave",function() {sound.stopStart();});``
+
 const defaultImage = "./img/hyundai.jpg"
 const totalEmblem = 8;
 let emblemOpened;
@@ -21,11 +22,6 @@ const randomCardArray = [];
 const cardsOpened = [];
 let timeLeft;
 let timer;
-
-
-// setTimeout(()=>{
-  
-// },200);
 
 function handleStartClick() {
   sound.stopStart();
