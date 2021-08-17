@@ -23,12 +23,34 @@ const cardsOpened = [];
 let timeLeft;
 let timer;
 
+function randomImage() {
+  randomCardArray.splice(0);
+  for (let i = 0; i < 2; i++) {
+    randomCardArray.push(["./img/lamborghini.jpg",Math.random()]);
+    randomCardArray.push(["./img/ferrari.jpg",Math.random()]);
+    randomCardArray.push(["./img/bugatti.jpg",Math.random()]);
+    randomCardArray.push(["./img/porsche.jpg",Math.random()]);
+    randomCardArray.push(["./img/rolls-royce.jpg",Math.random()]);
+    randomCardArray.push(["./img/maserati.jpg",Math.random()]);
+    randomCardArray.push(["./img/aston-martin.jpg",Math.random()]);
+    randomCardArray.push(["./img/bentley.jpg",Math.random()]);
+  }
+  randomCardArray.sort((a,b) => {
+    return a[1]-b[1];
+  });
+}
+
 function handleStartClick() {
   sound.stopStart();
   sound.playClick();
   sound.playBg();
   emblemOpened = 0
   timeLeft = 30;
+  randomImage();
+
+  $startButton.classList.toggle("hidden");
+  $restartButton.classList.toggle("hidden");
+  $gameInfo.classList.toggle("hidden"); 
   $cardContainer.style.background = 'none';
   $cards.forEach((card) => {
     card.src = defaultImage
@@ -36,16 +58,9 @@ function handleStartClick() {
     card.classList.remove("open");
   })
   
-  randomImage();
-
-  $startButton.classList.toggle("hidden");
-  $restartButton.classList.toggle("hidden");
-  $gameInfo.classList.toggle("hidden");
-  
-  
-  
   $timerTime.textContent = timeLeft;
   $stateEmblem.textContent = totalEmblem - emblemOpened;
+  
   timer = setInterval(function request() {
     if(timeLeft <= 0){
       failGame();
@@ -57,8 +72,8 @@ function handleStartClick() {
 }
 
 function endGame(){
-  clearTimeout(timer);
   sound.stopBg();
+  clearTimeout(timer);
   $cardContainer.style.background ="";
   $cards.forEach((card) => {
     card.classList.add("hidden");
@@ -85,25 +100,6 @@ function handleRestartClick() {
   $gameInfo.classList.toggle("hidden");
   $cardContainer.classList.remove("gameover");
   $cardContainer.classList.remove("win");
-
-  sound.playStart();
-}
-
-function randomImage() {
-  randomCardArray.splice(0);
-  for (let i = 0; i < 2; i++) {
-    randomCardArray.push(["./img/lamborghini.jpg",Math.random()]);
-    randomCardArray.push(["./img/ferrari.jpg",Math.random()]);
-    randomCardArray.push(["./img/bugatti.jpg",Math.random()]);
-    randomCardArray.push(["./img/porsche.jpg",Math.random()]);
-    randomCardArray.push(["./img/rolls-royce.jpg",Math.random()]);
-    randomCardArray.push(["./img/maserati.jpg",Math.random()]);
-    randomCardArray.push(["./img/aston-martin.jpg",Math.random()]);
-    randomCardArray.push(["./img/bentley.jpg",Math.random()]);
-  }
-  randomCardArray.sort((a,b) => {
-    return a[1]-b[1];
-  });
 }
 
 function handleCardClick(event) {
@@ -113,6 +109,7 @@ function handleCardClick(event) {
   if(isCardOpening) {
     return
   }
+
   event.target.classList.toggle("open");
   event.target.src = randomCardArray[event.target.id][0];
   cardsOpened.push(event.target);
@@ -135,15 +132,15 @@ function checkCards() {
       $cards[cardsOpened[1].id].classList.toggle("open");
       cardsOpened.splice(0,2);
       isCardOpening = false;
-    },300);
+    },500);
     return
   }
+
   sound.playCorrect();
   isCardOpening = false;
   emblemOpened += 1;
   $stateEmblem.textContent = (totalEmblem - emblemOpened);
   cardsOpened.splice(0);
-  
   
   if(totalEmblem - emblemOpened === 0) {
     setTimeout(() => {
