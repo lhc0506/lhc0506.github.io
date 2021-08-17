@@ -155,5 +155,3 @@ function checkCards() {
     },300);
   }
 }
-
-
