@@ -20,8 +20,8 @@ let emblemOpened;
 let isCardOpening = false;
 const randomCardArray = [];
 const cardsOpened = [];
-let timeLeft;
 let timer;
+let timeLeft;
 
 function randomImage() {
   randomCardArray.splice(0);
