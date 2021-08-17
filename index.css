@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Black Han Sans', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+}
+
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 450px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;  
+  background-image: url("./img/fast-furious.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+} 
+
+.card {
+  flex-basis: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+  margin: 10px auto;
+  font-size: 25px;
+}
+
+.timer-time, .state-emblem {
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.gameover {
+  background-image: url("./img/gameover.jpg");
+}
+
+.win {
+  background-image: url("./img/win.jpg");
+}
